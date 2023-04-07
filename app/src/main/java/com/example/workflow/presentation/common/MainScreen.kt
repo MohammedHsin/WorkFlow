@@ -1,6 +1,7 @@
 package com.example.workflow.presentation.common
 
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -39,7 +40,10 @@ fun BottomBar(navController: NavHostController){
     val currentDestination = navBackStackEntry?.destination
 
     BottomNavigation(
-        modifier = Modifier.clip(RoundedCornerShape(topEnd = 16.dp , topStart = 16.dp))
+        modifier = Modifier
+            .clip(RoundedCornerShape(20.dp))
+            .padding(bottom = 10.dp)
+
     ) {
         screens.forEach {
             AddItem(screen = it, currentDestination = currentDestination, navController = navController)
