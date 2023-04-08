@@ -19,6 +19,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.example.workflow.presentation.ui.theme.WorkFlowTheme
 
 
 @Composable
@@ -26,44 +27,48 @@ fun RowScope.AddItem(
     screen: Screen,
     currentDestination: NavDestination?,
     navHostController: NavHostController
-){
-    val selected = currentDestination?.hierarchy?.any{it.route == screen.route} == true
+) {
+    WorkFlowTheme() {
 
-    val background = if (selected) MaterialTheme.colors.primary.copy(alpha = 0.6f)
-    else Color.Transparent
+        val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
+
+        val background = if (selected) MaterialTheme.colors.primary.copy(alpha = 0.6f)
+        else Color.Transparent
 
 
-    Box(
-        modifier = Modifier
-            .height(40.dp)
-            .clip(CircleShape)
-            .background(background)
-            .clickable(onClick = {
-                navHostController.navigate(screen.route) {
-                    popUpTo(navHostController.graph.findStartDestination().id)
-                }
-            })
-    ) {
-
-        Row(
+        Box(
             modifier = Modifier
-                .padding(horizontal = 10.dp , vertical = 8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(4.dp)
-        ){
-            
-            Icon(imageVector = if (selected) screen.icon_focused else screen.icon
-                , contentDescription = "",
-            tint = LocalContentColor.current)
+                .height(40.dp)
+                .clip(CircleShape)
+                .background(background)
+                .clickable(onClick = {
+                    navHostController.navigate(screen.route) {
+                        popUpTo(navHostController.graph.findStartDestination().id)
+                    }
+                })
+        ) {
 
-            AnimatedVisibility(visible = selected) {
-                Text(text = screen.title , color = LocalContentColor.current)
+            Row(
+                modifier = Modifier
+                    .padding(horizontal = 10.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+
+                Icon(
+                    imageVector = if (selected) screen.icon_focused else screen.icon,
+                    contentDescription = "",
+                    tint = MaterialTheme.colors.primary
+                )
+
+                AnimatedVisibility(visible = selected) {
+                    Text(text = screen.title, color = MaterialTheme.colors.primary)
+                }
             }
         }
+
     }
-
 }
-
 
 
 
