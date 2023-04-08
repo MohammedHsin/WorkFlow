@@ -11,7 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.workflow.presentation.common.MainScreen
+import com.example.workflow.presentation.common.navigation.BottomNav
 import com.example.workflow.presentation.ui.theme.WorkFlowTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MainScreen()
+                    BottomNav()
                 }
             }
         }
@@ -35,5 +35,5 @@ class MainActivity : ComponentActivity() {
 @Composable
 @Preview
 fun Pre(){
-MainScreen()
+    BottomNav()
 }
