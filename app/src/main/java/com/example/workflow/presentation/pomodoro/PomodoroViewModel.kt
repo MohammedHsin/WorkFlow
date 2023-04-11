@@ -25,15 +25,18 @@ class PomodoroViewModel : ViewModel(){
     fun onStart(){
         timerJob?.cancel()
         timerJob = viewModelScope.launch {
+            _isRunning.value = true
             while (time.value > 0){
                 delay(1000)
                 _time.value--
             }
+            _isRunning.value = false
         }
     }
 
-    fun onStop(){
+    fun onPause(){
         timerJob?.cancel()
+        _isRunning.value = false
     }
 
 }
