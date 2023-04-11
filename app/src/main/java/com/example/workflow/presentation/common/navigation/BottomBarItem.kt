@@ -55,11 +55,13 @@ fun RowScope.AddItem(
                 horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
 
-                Icon(
-                    imageVector = if (selected) screen.icon_focused else screen.icon,
-                    contentDescription = "",
-                    tint = MaterialTheme.colors.primary
-                )
+                (if (selected) screen.icon_focused else screen.icon)?.let {
+                    Icon(
+                        imageVector = it,
+                        contentDescription = "",
+                        tint = MaterialTheme.colors.primary
+                    )
+                }
 
                 AnimatedVisibility(visible = selected) {
                     Text(text = screen.title, color = MaterialTheme.colors.primary)

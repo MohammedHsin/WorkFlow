@@ -12,8 +12,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 sealed class Screen(
     val route : String,
     val title : String,
-    val icon : ImageVector,
-    val icon_focused : ImageVector
+    val icon : ImageVector? = null,
+    val icon_focused : ImageVector? = null
 ){
     object DashBoard : Screen(
         "dashboard",
@@ -28,4 +28,10 @@ sealed class Screen(
         Icons.Outlined.Work,
         Icons.Filled.Work
     )
+
+    object Pomodoro : Screen(
+        "pomodoro",
+        "Pomodoro"
+    )
+
 }

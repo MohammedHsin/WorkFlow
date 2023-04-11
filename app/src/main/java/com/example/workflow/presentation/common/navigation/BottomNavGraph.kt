@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.workflow.presentation.DashBoard.DashBoardScreen
 import com.example.workflow.presentation.Systems.SystemsScreen
+import com.example.workflow.presentation.pomodoro.PomodoroScreen
 
 @Composable
 fun BottomNavGraph(navController: NavHostController){
@@ -16,7 +17,11 @@ fun BottomNavGraph(navController: NavHostController){
         }
 
         composable(Screen.Systems.route){
-            SystemsScreen()
+            SystemsScreen(navController)
+        }
+
+        composable(Screen.Pomodoro.route){
+            PomodoroScreen()
         }
     }
 }
