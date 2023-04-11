@@ -39,4 +39,10 @@ class PomodoroViewModel : ViewModel(){
         _isRunning.value = false
     }
 
+    fun onReset(){
+        timerJob?.cancel()
+        _time.value = 25
+        _isRunning.value = false
+    }
+
 }

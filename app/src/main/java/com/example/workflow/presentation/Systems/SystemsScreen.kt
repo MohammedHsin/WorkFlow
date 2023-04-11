@@ -11,6 +11,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.Timer
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -80,7 +81,7 @@ fun ItemCard(title: String, icon: ImageVector , navController : NavHostControlle
 @Composable
 fun SystemsLazyGrid(navController: NavHostController) {
     val items = listOf(
-        Pair("Pomodoro", Icons.Default.Home),
+        Pair("Pomodoro", Icons.Outlined.Timer),
         Pair("Pomodoro", Icons.Default.Home),
         Pair("Pomodoro", Icons.Default.Home),
         Pair("Pomodoro", Icons.Default.Home),
