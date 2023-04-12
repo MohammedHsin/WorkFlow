@@ -32,16 +32,14 @@ fun CustomCircularProgressIndicator(
     minValue:Int = 0,
     maxValue:Int = 100,
     circleRadius:Float,
-    time : Int,
+    positionValue: Int,
     onPositionChange:(Int)->Unit
 ) {
     var circleCenter by remember {
         mutableStateOf(Offset.Zero)
     }
 
-    var positionValue by remember {
-        mutableStateOf(initialValue)
-    }
+
 
 
 
@@ -161,11 +159,11 @@ fun Preview() {
             .size(250.dp)
             .background(darkBlue)
         ,
-        initialValue = 10,
+        initialValue = 70,
         primaryColor = blue,
         secondaryColor = brightBlue,
         circleRadius = 230f,
-        time = 3,
+        positionValue = 3,
         onPositionChange = {
 
         }
