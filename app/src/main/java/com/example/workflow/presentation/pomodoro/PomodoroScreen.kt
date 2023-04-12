@@ -1,5 +1,6 @@
 package com.example.workflow.presentation.pomodoro
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.modifier.modifierLocalProvider
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.workflow.presentation.pomodoro.components.CustomCircularProgressIndicator
 import com.example.workflow.presentation.ui.theme.*
 
@@ -24,36 +26,41 @@ import com.example.workflow.presentation.ui.theme.*
 fun PomodoroScreen(viewModel : PomodoroViewModel = hiltViewModel()){
 
 
-    val time by viewModel.time.collectAsState()
-    val isRunning by viewModel.isRunning.collectAsState()
+    val state by viewModel.state.collectAsState()
 
-    val _time = ((time.toFloat() / 25.0) * 100).toInt()
+    val _time = ((state.time.toFloat() / 25.0) * 100).toInt()
 
     Column(
         Modifier
             .fillMaxSize()
-            .background(darkBlue)
+            .background(Color(0xFF000000))
         ,
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally) {
 
+        Text(text = "${state.time}", Modifier
+            .background(Color(0xFF141b65).copy(alpha = 0.15f)),
+            fontSize = 40.sp,color = brightBlue)
+        
+        
                 CustomCircularProgressIndicator(
                     modifier = Modifier
                         .size(250.dp),
-                    initialValue = 0,
                     primaryColor = blue,
                     secondaryColor = brightBlue,
                     circleRadius = 230f,
                     positionValue = _time,
-                    onPositionChange = {
 
-                    }
                 )
         
-        Button(onClick = {
-            viewModel.onStart()
-        }) {
-            Text("Start")
+
+
+        AnimatedVisibility(visible = state.inSession) {
+            Button(onClick = {
+                viewModel.onReset()
+            }) {
+                Text(text = "Reset")
+            }
         }
 
 
