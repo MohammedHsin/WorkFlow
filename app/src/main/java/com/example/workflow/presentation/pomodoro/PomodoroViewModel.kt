@@ -13,12 +13,6 @@ import kotlin.concurrent.timer
 
 class PomodoroViewModel : ViewModel(){
 
-//    private val _time = MutableStateFlow(25)
-//    val time : StateFlow<Int> = _time
-//
-//
-//    private val _isRunning = MutableStateFlow(false)
-//    val isRunning : StateFlow<Boolean> = _isRunning
 
     private val _state = MutableStateFlow(PomodoroState())
     val state : StateFlow<PomodoroState> = _state
@@ -47,6 +41,10 @@ class PomodoroViewModel : ViewModel(){
         timerJob?.cancel()
         _state.value = _state.value.copy(time = _state.value.amount)
         _state.value = _state.value.copy(isRunning = false , inSession = false)
+    }
+
+    fun amountChange(newAmount : Int){
+        _state.value = _state.value.copy(amount = newAmount , time = newAmount)
     }
 
 }

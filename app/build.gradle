@@ -90,6 +90,10 @@ dependencies {
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:2.5.0")
+
+    // number picker
+    implementation "com.chargemap.compose:numberpicker:1.0.3"
+
 }
 
 kapt {

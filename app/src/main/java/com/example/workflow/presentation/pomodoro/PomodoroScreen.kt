@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.workflow.presentation.pomodoro.components.CustomCircularProgressIndicator
+import com.example.workflow.presentation.pomodoro.components.TimePicker
 import com.example.workflow.presentation.ui.theme.*
 
 @Composable
@@ -28,20 +29,27 @@ fun PomodoroScreen(viewModel : PomodoroViewModel = hiltViewModel()){
 
     val state by viewModel.state.collectAsState()
 
-    val _time = ((state.time.toFloat() / 25.0) * 100).toInt()
+    val _time = ((state.time.toFloat() / state.amount) * 100).toInt()
 
     Column(
         Modifier
             .fillMaxSize()
-            .background(Color(0xFF000000))
+            .background(Color.Red)
         ,
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally) {
 
-        Text(text = "${state.time}", Modifier
-            .background(Color(0xFF141b65).copy(alpha = 0.15f)),
-            fontSize = 40.sp,color = brightBlue)
-        
+        AnimatedVisibility(visible = state.inSession) {
+            Text(text = "${state.time}", Modifier
+                .background(Color(0xFF141b65).copy(alpha = 0.15f)),
+                fontSize = 40.sp,color = brightBlue)
+        }
+        AnimatedVisibility(visible = !state.inSession) {
+            TimePicker(time = state.amount , onTimeChange = {
+                viewModel.amountChange(it)
+            })
+        }
+
         
                 CustomCircularProgressIndicator(
                     modifier = Modifier

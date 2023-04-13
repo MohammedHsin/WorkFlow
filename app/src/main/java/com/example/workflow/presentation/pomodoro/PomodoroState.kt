@@ -5,4 +5,6 @@ data class PomodoroState(
     val isRunning : Boolean = false,
     val inSession : Boolean = false,
     val amount : Int = 25
-)
+){
+
+}
