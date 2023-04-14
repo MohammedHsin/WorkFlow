@@ -34,7 +34,7 @@ fun PomodoroScreen(viewModel : PomodoroViewModel = hiltViewModel()){
     Column(
         Modifier
             .fillMaxSize()
-            .background(Color.Red)
+            .background(Color.DarkGray)
         ,
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally) {
