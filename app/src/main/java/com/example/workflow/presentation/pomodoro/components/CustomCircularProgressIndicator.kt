@@ -30,6 +30,7 @@ import com.example.workflow.presentation.pomodoro.PomodoroViewModel
 import com.example.workflow.presentation.ui.theme.WorkFlowTheme
 import com.example.workflow.presentation.ui.theme.prime
 import com.example.workflow.presentation.ui.theme.second
+import com.example.workflow.util.NoRippleInteractionSource
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -57,13 +58,7 @@ fun CustomCircularProgressIndicator(
 
         Box(
             modifier = modifier
-                .clickable {
-                if (state.value.isRunning) {
-                    viewModel.onPause()
-                } else {
-                    viewModel.onStart()
-                }
-            },
+                ,
             contentAlignment = Alignment.Center
         ) {
 
@@ -159,6 +154,14 @@ fun CustomCircularProgressIndicator(
             Box(modifier = Modifier
                 .size(210.dp)
                 .align(Alignment.Center)
+                .clickable( onClick = {
+                    if (state.value.isRunning) {
+                        viewModel.onPause()
+                    } else {
+                        viewModel.onStart()
+                    }
+
+                }, indication = null , interactionSource = NoRippleInteractionSource())
                 , contentAlignment = Alignment.Center
             ){
                 AnimatedVisibility(!state.value.isRunning) {

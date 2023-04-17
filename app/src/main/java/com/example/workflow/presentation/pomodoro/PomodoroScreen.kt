@@ -41,9 +41,7 @@ fun PomodoroScreen(viewModel : PomodoroViewModel = hiltViewModel()){
     horizontalAlignment = Alignment.CenterHorizontally) {
 
         AnimatedVisibility(visible = state.inSession) {
-            Text(text = TimeMapper.formatTime(state.time), Modifier
-                .background(Color(0xFF141b65).copy(alpha = 0.15f)),
-                fontSize = 40.sp)
+            Text(text = TimeMapper.formatTime(state.time) , fontSize = 40.sp)
         }
         AnimatedVisibility(visible = !state.inSession) {
             TimePicker(time = state.amount , onTimeChange = {

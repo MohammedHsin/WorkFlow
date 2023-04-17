@@ -94,6 +94,9 @@ dependencies {
     // number picker
     implementation "com.chargemap.compose:numberpicker:1.0.3"
 
+    // system bars customization
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
+
 }
 
 kapt {
