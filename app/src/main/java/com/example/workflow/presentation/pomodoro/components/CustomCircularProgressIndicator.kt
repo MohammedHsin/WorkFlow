@@ -28,9 +28,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.workflow.presentation.pomodoro.PomodoroViewModel
 import com.example.workflow.presentation.ui.theme.WorkFlowTheme
-import com.example.workflow.presentation.ui.theme.blue
-import com.example.workflow.presentation.ui.theme.brightBlue
-import com.example.workflow.presentation.ui.theme.darkBlue
+import com.example.workflow.presentation.ui.theme.prime
+import com.example.workflow.presentation.ui.theme.second
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -57,7 +56,14 @@ fun CustomCircularProgressIndicator(
 
 
         Box(
-            modifier = modifier,
+            modifier = modifier
+                .clickable {
+                if (state.value.isRunning) {
+                    viewModel.onPause()
+                } else {
+                    viewModel.onStart()
+                }
+            },
             contentAlignment = Alignment.Center
         ) {
 
@@ -152,28 +158,21 @@ fun CustomCircularProgressIndicator(
 
             Box(modifier = Modifier
                 .size(210.dp)
-                .background(Color(0xFF141b65).copy(alpha = 0.15f), shape = CircleShape)
                 .align(Alignment.Center)
-                .clickable {
-                    if (state.value.isRunning) {
-                        viewModel.onPause()
-                    } else {
-                        viewModel.onStart()
-                    }
-                }, contentAlignment = Alignment.Center
+                , contentAlignment = Alignment.Center
             ){
                 AnimatedVisibility(!state.value.isRunning) {
                     Text(text = "Start", Modifier
                         .align(Alignment.Center)
-                        .background(Color(0xFF141b65).copy(alpha = 0.15f)),
-                        fontSize = 40.sp,color = brightBlue)
+                        ,
+                        fontSize = 40.sp)
                 }
 
                 AnimatedVisibility(state.value.isRunning) {
                     Text(text = "Pause", Modifier
                         .align(Alignment.Center)
-                        .background(Color(0xFF141b65).copy(alpha = 0.15f)),
-                        fontSize = 40.sp,color = brightBlue)
+                        ,
+                        fontSize = 40.sp)
                 }
 
 
@@ -189,10 +188,9 @@ fun Preview() {
     CustomCircularProgressIndicator(
         modifier = Modifier
             .size(500.dp)
-            .background(darkBlue)
         ,
-        primaryColor = blue,
-        secondaryColor = brightBlue,
+        primaryColor = prime,
+        secondaryColor = second,
         circleRadius = 330f,
         positionValue = 3,
     )
